@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable jsx-a11y/alt-text */
+import "./App.css";
+import pic from "./pics/pic.jpg";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <dic>
+      <h1 className="center">Clothing Shop</h1>
+      <p className="center">
+        Quality is remembered long after price is forgotten
+      </p>
+      <img className="centerImage" src={pic} alt="logo" />
+    </dic>
   );
 }
 
