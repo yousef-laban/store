@@ -1,27 +1,17 @@
-/* eslint-disable jsx-a11y/alt-text */
-
-//styling
-import "./App.css";
-//data
-import pic from "./pics/pic.jpg";
-import products from "./products";
+//component
+import Home from "./components/Home";
+import ProductsComp from "./components/ProductsComp";
+//styleing
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle, theme } from "./styles";
 
 function App() {
-  let productsList = products.map((product) => (
-    <div className="product">
-      <img className="product-image" src={product.url} alt={product.name} />
-      <p className="text">{product.name}</p>
-      <p className="text">{product.price} JOD</p>
-    </div>
-  ));
-
   return (
-    <div className="center">
-      <h1>Clothing Shop</h1>
-      <p>Quality is remembered long after price is forgotten</p>
-      <img className="center-image" src={pic} alt="logo" />
-      <div className="products">{productsList}</div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Home />
+      <ProductsComp />
+    </ThemeProvider>
   );
 }
 
