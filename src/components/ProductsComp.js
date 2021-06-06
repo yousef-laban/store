@@ -4,13 +4,32 @@ import { ProductsStyle } from "../styles";
 //data
 import products from "../products";
 import ProductItem from "./ProductItem";
+import SearchBar from "./SearchBar";
 
-const ProductsComp = () => {
-  let productsList = products.map((product) => (
-    <ProductItem key={product.id} item={product} />
-  ));
+//
+import { useState } from "react";
 
-  return <ProductsStyle> {productsList} </ProductsStyle>;
+const ProductsComp = (props) => {
+  const [query, setQuery] = useState("");
+
+  const filteredList = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((product) => (
+      <ProductItem
+        setProduct={props.setProduct}
+        key={product.id}
+        item={product}
+      />
+    ));
+
+  return (
+    <div>
+      <SearchBar setQuery={setQuery} />
+      <ProductsStyle>{filteredList} </ProductsStyle>;
+    </div>
+  );
 };
 
 export default ProductsComp;
