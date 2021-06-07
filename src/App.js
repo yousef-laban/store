@@ -7,11 +7,16 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./styles";
 //
 import { useState } from "react";
-// import products from "./products";
+import products from "./products";
 
 function App() {
   const [counter, setCounter] = useState(0);
   const [product, setProduct] = useState(null);
+  const [_products, setProducts] = useState(products);
+
+  const deleteProduct = (productId) => {
+    setProducts(_products.filter((product) => product.id !== productId));
+  };
 
   const sw = () => {
     setCounter(counter + 1);
@@ -23,8 +28,15 @@ function App() {
   };
 
   const setView = () => {
-    if (product) return <DetailItem item={product} setProduct={setProduct} />;
-    else return <ProductsComp setProduct={setProduct} />;
+    if (product)
+      return (
+        <DetailItem
+          deleteProduct={deleteProduct}
+          item={product}
+          setProduct={setProduct}
+        />
+      );
+    else return <ProductsComp _products={_products} setProduct={setProduct} />;
   };
   return (
     <ThemeProvider theme={theme[y()]}>

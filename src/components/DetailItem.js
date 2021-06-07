@@ -1,9 +1,16 @@
 //styling
 import { ProductImage, ItemDetail, StyledButton } from "../styles";
+import { MdDeleteForever } from "react-icons/md";
+
 //data
 // import products from "../products";
 
 const DetailItem = (props) => {
+  const deleteAndReturn = () => {
+    props.setProduct(null);
+    props.deleteProduct(props.item.id);
+  };
+
   return (
     <ItemDetail>
       <div>
@@ -14,10 +21,13 @@ const DetailItem = (props) => {
         <p>{props.item.description} </p>
         <br />
         <p>{props.item.price} JOD</p>
-        <br />
-        <br />
+
         <StyledButton onClick={() => props.setProduct(null)}>
           &#8592;
+        </StyledButton>
+
+        <StyledButton onClick={deleteAndReturn}>
+          <MdDeleteForever />
         </StyledButton>
       </div>
     </ItemDetail>

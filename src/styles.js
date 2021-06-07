@@ -126,9 +126,10 @@ export const StyledButton = styled.button`
   font-family: Arial;
   font-size: 28px;
   font-weight: bold;
-  padding: 4px 13px;
+  padding: 0px;
   text-decoration: none;
   text-shadow: 0px -1px 0px #2b665e;
+  margin-bottom:20px;
   :hover {
     background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
     background-color: #6c7c7c;
