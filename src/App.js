@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import ProductsComp from "./components/ProductsComp";
 import DetailItem from "./components/DetailItem";
 import NavBar from "./components/NavBar";
+import NewProduct from "./components/NewProduct";
 //styleing
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./styles";
@@ -32,9 +33,16 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route path="/products/:productSlug/edit">
+          <NewProduct />
+        </Route>
 
         <Route path="/products/:itemSlug">
           <DetailItem />
+        </Route>
+
+        <Route path="/new-product">
+          <NewProduct />
         </Route>
 
         <Route path="/products">

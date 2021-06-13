@@ -1,6 +1,10 @@
 import products from "../products";
+import {} from "module";
 import { DELETE_PRODUCT } from "./actions";
-import { Redirect } from "react-router-dom";
+import { CREATE_PRODUCT } from "./actions";
+import { UPDATE_PRODUCT } from "./actions";
+
+import slugify from "slugify";
 
 const initialState = {
   // initiate all state and its initial value
@@ -13,11 +17,33 @@ const reducer = (state = initialState, action) => {
       const productToKeep = state.products.filter(
         (product) => product.id !== action.payload.productId
       );
-      <Redirect to="/products" />;
 
       return {
         ...state,
         products: productToKeep,
+      };
+
+    case CREATE_PRODUCT:
+      action.payload.newProduct.id =
+        state.products[state.products.length - 1].id + 1;
+      action.payload.newProduct.slug = slugify(action.payload.newProduct.name);
+      return {
+        ...state,
+        products: [...state.products, action.payload.newProduct],
+      };
+
+    case UPDATE_PRODUCT:
+      action.payload.updatedProduct.slug = slugify(
+        action.payload.updatedProduct.name
+      );
+
+      return {
+        ...state,
+        products: state.products.map((product) =>
+          product.id === action.payload.updatedProduct.id
+            ? action.payload.updatedProduct
+            : product
+        ),
       };
 
     default:

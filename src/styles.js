@@ -111,7 +111,6 @@ export const ProductImage = styled.img`
 
 export const SearchBarStyled = styled.input`
   padding: 0.5rem;
-  margin: 1rem auto;
   display: block;
   width: 40%;
 `;
@@ -173,4 +172,19 @@ export const Logo = styled(Link)`
 export const ButtonLink = styled(Link)`
   padding: 5px;
   width: 50px;
+`;
+
+export const FlexStyle = styled.div`
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: center;
+`;
+
+export const FlexStyleVer = styled.div`
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

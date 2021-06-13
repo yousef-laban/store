@@ -35,6 +35,10 @@ const DetailItem = (props) => {
         <StyledButton onClick={() => dispatch(deleteProduct(product.id))}>
           <MdDeleteForever />
         </StyledButton>
+
+        <ButtonLink to={`/products/${product.slug}/edit`}>
+          <StyledButton>Edit Proudct</StyledButton>
+        </ButtonLink>
       </div>
     </ItemDetail>
   );
