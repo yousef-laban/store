@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import { NavLink, Link } from "react-router-dom";
 
 export const theme = {
   light: {
@@ -44,6 +45,7 @@ export const Center = styled.div`
   h1 {
     font-size: 60px;
     font-family: Brush Script MT;
+    margin-top: 50px;
   }
 `;
 
@@ -129,7 +131,7 @@ export const StyledButton = styled.button`
   padding: 0px;
   text-decoration: none;
   text-shadow: 0px -1px 0px #2b665e;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   :hover {
     background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
     background-color: #6c7c7c;
@@ -138,4 +140,37 @@ export const StyledButton = styled.button`
     position: relative;
     top: 1px;
   }
+`;
+
+export const NavB = styled.nav`
+  background-color: ${(props) => props.theme.backGroundColor};
+  padding: 5px;
+  border-bottom: 1px solid ${(props) => props.theme.thirdColor};
+  display: flex;
+  justify-content: space-between;
+`;
+export const LinkItem = styled(NavLink)`
+  background-color: ${(props) => props.theme.backGroundColor};
+  color: ${(props) => props.theme.textColor};
+  padding: 5px;
+
+  &.active {
+    background-color: ${(props) => props.theme.textColor};
+    color: ${(props) => props.theme.backGroundColor};
+    padding: 5px;
+    margin: 5px;
+  }
+`;
+
+export const Logo = styled(Link)`
+  padding: 5px;
+
+  img {
+    width: 50px;
+  }
+`;
+
+export const ButtonLink = styled(Link)`
+  padding: 5px;
+  width: 50px;
 `;

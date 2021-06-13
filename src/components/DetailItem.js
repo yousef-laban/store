@@ -1,32 +1,38 @@
 //styling
-import { ProductImage, ItemDetail, StyledButton } from "../styles";
+import { ProductImage, ItemDetail, StyledButton, ButtonLink } from "../styles";
 import { MdDeleteForever } from "react-icons/md";
-
-//data
-// import products from "../products";
+//
+import { Redirect, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { deleteProduct } from "../store/actions";
+import { useDispatch } from "react-redux";
 
 const DetailItem = (props) => {
-  const deleteAndReturn = () => {
-    props.setProduct(null);
-    props.deleteProduct(props.item.id);
-  };
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  let itemSlug = useParams().itemSlug;
+
+  const product = products.find((product) => product.slug === itemSlug);
+
+  if (typeof product === "undefined") return <Redirect to="/products" />;
 
   return (
     <ItemDetail>
       <div>
-        <ProductImage src={props.item.url} alt={props.item.name} />
+        <ProductImage src={product.url} alt={product.name} />
       </div>
       <div>
-        <h1>{props.item.name}</h1>
-        <p>{props.item.description} </p>
+        <h1>{product.name}</h1>
+        <p>{product.description} </p>
         <br />
-        <p>{props.item.price} JOD</p>
+        <p>{product.price} JOD</p>
 
-        <StyledButton onClick={() => props.setProduct(null)}>
-          &#8592;
-        </StyledButton>
+        <ButtonLink to="/products">
+          <StyledButton>&#8592;</StyledButton>
+        </ButtonLink>
 
-        <StyledButton onClick={deleteAndReturn}>
+        <StyledButton onClick={() => dispatch(deleteProduct(product.id))}>
           <MdDeleteForever />
         </StyledButton>
       </div>

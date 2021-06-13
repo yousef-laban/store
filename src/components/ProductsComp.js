@@ -1,28 +1,23 @@
 //styling
 import { ProductsStyle } from "../styles";
 
-//data
-// import products from "../products";
+//components
 import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
 
 //
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ProductsComp = (props) => {
+  const products = useSelector((state) => state.products);
   const [query, setQuery] = useState("");
 
-  const filteredList = props._products
+  const filteredList = products
     .filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     )
-    .map((product) => (
-      <ProductItem
-        setProduct={props.setProduct}
-        key={product.id}
-        item={product}
-      />
-    ));
+    .map((product) => <ProductItem key={product.id} product={product} />);
 
   return (
     <div>
