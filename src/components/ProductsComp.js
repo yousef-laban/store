@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 
 const ProductsComp = (props) => {
   const products = useSelector((state) => state.products);
-  const [query, setQuery] = useState("");
 
+  const [query, setQuery] = useState("");
   const filteredList = products
     .filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())

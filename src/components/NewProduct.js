@@ -41,6 +41,10 @@ const NewProduct = () => {
     setProduct({ ...product, [event.target.name]: event.target.value });
   };
 
+  const handelUrl = (event) => {
+    setProduct({ ...product, url: event.target.files[0] });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -66,16 +70,6 @@ const NewProduct = () => {
         </label>
 
         <label>
-          Image URL:
-          <input
-            type="text"
-            name="url"
-            value={product.url}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label>
           Price:
           <input
             type="text"
@@ -95,7 +89,17 @@ const NewProduct = () => {
           />
         </label>
 
-        <input type="submit" value="Submit" />
+        <label>
+          Image URL:
+          <input
+            type="file"
+            name="url"
+            // value={product.url} we remove it becouse type file is read only
+            onChange={handelUrl}
+          />
+        </label>
+
+        <input type="submit" value={editedProduct ? "Update" : "Add"} />
       </FlexStyleVer>
     </form>
   );

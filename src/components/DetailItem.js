@@ -9,11 +9,17 @@ import { useDispatch } from "react-redux";
 
 const DetailItem = (props) => {
   const products = useSelector((state) => state.products);
+  const loading = useSelector((state) => state.loading);
+
   const dispatch = useDispatch();
 
   let itemSlug = useParams().itemSlug;
 
+  if (loading) return <h1>loading</h1>;
   const product = products.find((product) => product.slug === itemSlug);
+
+  console.log(itemSlug);
+  console.log(product);
 
   if (typeof product === "undefined") return <Redirect to="/products" />;
 

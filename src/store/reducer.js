@@ -1,14 +1,13 @@
-import products from "../products";
 import {} from "module";
 import { DELETE_PRODUCT } from "./actions";
 import { CREATE_PRODUCT } from "./actions";
 import { UPDATE_PRODUCT } from "./actions";
-
-import slugify from "slugify";
+import { FETCH_PRODUCTS } from "./actions";
 
 const initialState = {
   // initiate all state and its initial value
-  products: products,
+  products: [],
+  loading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,26 +23,26 @@ const reducer = (state = initialState, action) => {
       };
 
     case CREATE_PRODUCT:
-      action.payload.newProduct.id =
-        state.products[state.products.length - 1].id + 1;
-      action.payload.newProduct.slug = slugify(action.payload.newProduct.name);
       return {
         ...state,
-        products: [...state.products, action.payload.newProduct],
+        products: [...state.products, action.payload],
       };
 
     case UPDATE_PRODUCT:
-      action.payload.updatedProduct.slug = slugify(
-        action.payload.updatedProduct.name
-      );
-
+      const { updatedProduct } = action.payload;
+      console.log(updatedProduct);
       return {
         ...state,
         products: state.products.map((product) =>
-          product.id === action.payload.updatedProduct.id
-            ? action.payload.updatedProduct
-            : product
+          product.id === updatedProduct.id ? updatedProduct : product
         ),
+      };
+
+    case FETCH_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
+        loading: false,
       };
 
     default:
