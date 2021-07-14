@@ -4,6 +4,12 @@ import ProductsComp from "./components/ProductsComp";
 import DetailItem from "./components/DetailItem";
 import NavBar from "./components/NavBar";
 import NewProduct from "./components/NewProduct";
+import ShopsComp from "./components/shopsComponents/ShopsComp";
+import NewShop from "./components/shopsComponents/NewShop";
+import DetailShop from "./components/shopsComponents/DetailShop";
+import Signup from "./components/usersComponents/Signup";
+import Signin from "./components/usersComponents/Signin";
+
 //styleing
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./styles";
@@ -11,8 +17,11 @@ import { GlobalStyle, theme } from "./styles";
 //
 import { useState } from "react";
 import { Route, Switch } from "react-router";
+import { useSelector } from "react-redux";
 
 function App() {
+  const products = useSelector((state) => state.products.products);
+
   const [counter, setCounter] = useState(0);
 
   const sw = () => {
@@ -33,6 +42,31 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+
+        <Route path="/signin">
+          <Signin />
+        </Route>
+
+        <Route path="/signup">
+          <Signup />
+        </Route>
+
+        <Route path="/shops/:shopSlug/products">
+          <NewProduct />
+        </Route>
+
+        <Route path="/shops/:itemSlug">
+          <DetailShop />
+        </Route>
+
+        <Route path="/new-shop">
+          <NewShop />
+        </Route>
+
+        <Route path="/shops">
+          <ShopsComp />;
+        </Route>
+
         <Route path="/products/:productSlug/edit">
           <NewProduct />
         </Route>
@@ -41,12 +75,8 @@ function App() {
           <DetailItem />
         </Route>
 
-        <Route path="/new-product">
-          <NewProduct />
-        </Route>
-
         <Route path="/products">
-          <ProductsComp />;
+          <ProductsComp products={products} />;
         </Route>
       </Switch>
     </ThemeProvider>

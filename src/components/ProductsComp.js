@@ -1,5 +1,5 @@
 //styling
-import { ProductsStyle } from "../styles";
+import { ProductsStyle, Center } from "../styles";
 
 //components
 import ProductItem from "./ProductItem";
@@ -10,7 +10,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const ProductsComp = (props) => {
-  const products = useSelector((state) => state.products);
+  const products = props.products;
+  const user = useSelector((state) => state.user.user);
 
   const [query, setQuery] = useState("");
   const filteredList = products
@@ -20,10 +21,18 @@ const ProductsComp = (props) => {
     .map((product) => <ProductItem key={product.id} product={product} />);
 
   return (
-    <div>
-      <SearchBar setQuery={setQuery} />
-      <ProductsStyle>{filteredList} </ProductsStyle>;
-    </div>
+    <>
+      {user ? (
+        <div>
+          <SearchBar setQuery={setQuery} />
+          <ProductsStyle>{filteredList} </ProductsStyle>;
+        </div>
+      ) : (
+        <Center>
+          <h1>Please Sign In </h1>
+        </Center>
+      )}
+    </>
   );
 };
 

@@ -1,8 +1,4 @@
-import {} from "module";
-import { DELETE_PRODUCT } from "./actions";
-import { CREATE_PRODUCT } from "./actions";
-import { UPDATE_PRODUCT } from "./actions";
-import { FETCH_PRODUCTS } from "./actions";
+import * as actionType from "../actions/types";
 
 const initialState = {
   // initiate all state and its initial value
@@ -10,9 +6,9 @@ const initialState = {
   loading: true,
 };
 
-const reducer = (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case DELETE_PRODUCT:
+    case actionType.DELETE_PRODUCT:
       const productToKeep = state.products.filter(
         (product) => product.id !== action.payload.productId
       );
@@ -22,13 +18,13 @@ const reducer = (state = initialState, action) => {
         products: productToKeep,
       };
 
-    case CREATE_PRODUCT:
+    case actionType.CREATE_PRODUCT:
       return {
         ...state,
         products: [...state.products, action.payload],
       };
 
-    case UPDATE_PRODUCT:
+    case actionType.UPDATE_PRODUCT:
       const { updatedProduct } = action.payload;
       console.log(updatedProduct);
       return {
@@ -38,7 +34,7 @@ const reducer = (state = initialState, action) => {
         ),
       };
 
-    case FETCH_PRODUCTS:
+    case actionType.FETCH_PRODUCTS:
       return {
         ...state,
         products: action.payload,
@@ -50,4 +46,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default productReducer;

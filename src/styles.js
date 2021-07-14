@@ -84,29 +84,22 @@ export const ItemDetail = styled.div`
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+  height: 25 rem;
 
   display: flex;
   justify-content: center;
+`;
 
-  p {
-    font-weight: bold;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    justify-content: center;
-    margin-left: 50px;
-  }
+export const DetaledImage = styled.img`
+  width: 25rem;
+  height: 25rem;
+  border-radius: 4%;
 `;
 
 export const ProductImage = styled.img`
-  width: 200px;
-  height: 300px;
-  border: 5px solid;
-  border-color: ${(props) => props.theme.thirdColor};
-  border-radius: 4%;
+  width: 100%;
+  height: 18rem;
+  border-radius: 1%;
 `;
 
 export const SearchBarStyled = styled.input`
@@ -144,7 +137,7 @@ export const StyledButton = styled.button`
 export const NavB = styled.nav`
   background-color: ${(props) => props.theme.backGroundColor};
   padding: 5px;
-  border-bottom: 1px solid ${(props) => props.theme.thirdColor};
+  /* border-bottom: 1px solid ${(props) => props.theme.thirdColor}; */
   display: flex;
   justify-content: space-between;
 `;
@@ -163,9 +156,11 @@ export const LinkItem = styled(NavLink)`
 
 export const Logo = styled(Link)`
   padding: 5px;
-
+  display: flex;
+  letter-spacing: 2px;
   img {
     width: 50px;
+    margin-right: 15px;
   }
 `;
 
@@ -175,16 +170,30 @@ export const ButtonLink = styled(Link)`
 `;
 
 export const FlexStyle = styled.div`
-  margin-top: 20px;
+  /* margin-top: 20px; */
 
   display: flex;
   justify-content: center;
 `;
 
 export const FlexStyleVer = styled.div`
-  margin-top: 20px;
+  /* margin-top: 20px; */
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+`;
+
+export const FormCenter = styled.form`
+  margin: auto;
+  margin-top: 80px;
+  width: 40%;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 20px;
+`;
+
+export const ButtonsStyle = styled.div`
+  display: flex;
+  justify-content: left;
 `;

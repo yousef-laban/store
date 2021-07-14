@@ -6,13 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 
-
 // Redux
 import { Provider } from "react-redux";
 import store from "./store/index";
-import { fetchProducts } from "./store/actions";
-store.dispatch(fetchProducts())
+//
+import { fetchProducts } from "./store/actions/productActions";
+import { fetchShops } from "./store/actions/shopsActions";
+import { checkForToken } from "./store/actions/authActions";
 
+store.dispatch(fetchProducts());
+store.dispatch(fetchShops());
+store.dispatch(checkForToken());
 
 ReactDOM.render(
   <React.StrictMode>

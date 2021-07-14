@@ -1,17 +1,18 @@
 //
 import axios from "axios";
 // Action Types
-export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+import * as actionType from "./types";
+// export const DELETE_PRODUCT = "DELETE_PRODUCT";
+// export const CREATE_PRODUCT = "CREATE_PRODUCT";
+// export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+// export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
 
 export const deleteProduct = (productId) => {
   return async (dispatch) => {
     try {
       await axios.delete(`http://localhost:8000/products/${productId}`);
       dispatch({
-        type: DELETE_PRODUCT,
+        type: actionType.DELETE_PRODUCT,
         payload: { productId },
       });
     } catch (error) {
@@ -27,10 +28,13 @@ export const createProduct = (newProduct) => async (dispatch) => {
       formData.append(key, newProduct[key]);
     }
 
-    const res = await axios.post("http://localhost:8000/products", formData);
+    const res = await axios.post(
+      `http://localhost:8000/shops/${newProduct.shopId}/products`,
+      formData
+    );
 
     dispatch({
-      type: CREATE_PRODUCT,
+      type: actionType.CREATE_PRODUCT,
       payload: res.data,
     });
   } catch (error) {
@@ -50,7 +54,7 @@ export const updateProduct = (updatedProduct) => {
         formData
       );
       dispatch({
-        type: UPDATE_PRODUCT,
+        type: actionType.UPDATE_PRODUCT,
         payload: { updatedProduct: res.data },
       });
     } catch (error) {
@@ -64,7 +68,7 @@ export const fetchProducts = () => {
     try {
       const res = await axios.get("http://localhost:8000/products");
       dispatch({
-        type: FETCH_PRODUCTS,
+        type: actionType.FETCH_PRODUCTS,
         payload: res.data,
       });
     } catch (error) {
